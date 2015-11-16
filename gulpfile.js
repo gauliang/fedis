@@ -5,52 +5,55 @@ var gulp        = require('gulp'),
 	SSI 		= require('browsersync-ssi'),
 	concat      = require('gulp-concat'),
 	minifyCss   = require('gulp-minify-css'),
+	minify   	= require('gulp-minify'),
 	plumber     = require('gulp-plumber'),
 	rename      = require('gulp-rename'),
 	sass        = require('gulp-sass'),
 	zip			= require('gulp-zip');
 
 // Static Server + watching scss/html files
-gulp.task('serve',['sass'], function() {
+gulp.task('serve', function() {
 
 	browserSync.init({
 		server: {
-			baseDir:["./app/docs"],
+			baseDir:["./dist"],
 			middleware:SSI({
-				baseDir:'./app/docs',
+				baseDir:'./dist',
 				ext:'.shtml',
-				version:'2.9.11'
+				version:'2.10.0'
 			})
 		}
 	});
 
-	gulp.watch("app/src/scss/*.scss", ['sass']);
-	gulp.watch("app/src/js/**/*.js", ['js']);
-	gulp.watch("app/docs/include/**/*.html").on("change",browserSync.reload);
+	gulp.watch("app/scss/**/*.scss", ['sass']);
+	gulp.watch("app/scripts/**/*.js", ['js']);
+	gulp.watch("dist/**/*.html").on("change",browserSync.reload);
 });
 
 // Compile sass into CSS & auto-inject into browsers
 gulp.task('sass', function() {
-	return gulp.src("app/src/scss/*.scss")
+	
+	return gulp.src("app/scss/**/*.scss")
 		.pipe(plumber())
 		.pipe(sass.sync().on('error', sass.logError))
 		.pipe(sass({outputStyle:"compact"}))
-		.pipe(gulp.dest("app/docs/styles"))
+		.pipe(gulp.dest("dist/styles"))
 		.pipe(browserSync.stream());
 });
 
 // javscript files operate
 gulp.task('js', function(){
-	return gulp.src('app/src/js/**/*.js')
+	return gulp.src('app/scripts/**/*.js')
 		.pipe(plumber())
-		.pipe(gulp.dest("app/docs/scripts"))
+		.pipe(minify())
+		.pipe(gulp.dest("dist/scripts"))
 		.pipe(browserSync.stream());
 });
 
 // publish
 gulp.task('dist-sass', function(){
 	return gulp.src("app/src/scss/main.scss")
-		.pipe(plumber())
+		//.pipe(plumber())
 		.pipe(sass.sync().on('error', sass.logError))
 		.pipe(sass({outputStyle:"compact"}))
 		.pipe(gulp.dest("app/docs/dist/style"))

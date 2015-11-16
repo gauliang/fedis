@@ -218,3 +218,4 @@ pip-log.txt
 # C++文件屏蔽
 .cpp
 .zip
+node_modules/
