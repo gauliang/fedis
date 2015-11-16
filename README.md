@@ -36,6 +36,10 @@ npm install fedis
 ```
 由于网络问题安装过程会持续一段时间，请耐心等候。
 
+## 如何使用
+1、进入项目目录 fedis/ 执行 gulp 命令。此时浏览器会自动打开，并且多终端多屏幕实时响应你的代码变化。 
+2、进入工作目录 fedis/app/ 进行开始工作。
+
 ## 常见问题
 
 1. 安装 node-sass/gulp-sass 失败
@@ -48,7 +52,7 @@ npm install fedis
 
 下载 node_modules.7z 后解压至 fedis/node_modules 目录下，尝试重新 npm install
 
-[node_modules.7z](http://files.cnblogs.com/files/kelsen/node_modules.7z)
+[node_modules.7z 下载](http://files.cnblogs.com/files/kelsen/node_modules.7z)
 
 下面列出了 node_modules.7z 中已安装好的软件包，下载 fedis 后你可以在  fedis/node_modules 中看到它们。随着这些软件包的更新 fedis 也会跟着更新，所以你安装的最新版本的 fedis 中的下列软件包可能不是最新的，如果需要最使用它们的新特性你需要自行升级相关软件包。
 * node-sass    3.4.2
@@ -56,8 +60,9 @@ npm install fedis
 * browser-sync 2.10.0
 * browsersync-ssi 0.2.4
 
+
 ## 鸣谢
-fedis 用到了很多开源软件包，没有这些开源项目就没要fedis，在此对相关开源团队表示由衷的感谢！
+fedis 用到了很多开源软件包，没有这些开源项目就没有fedis，在此对相关开源团队表示由衷的感谢！
 
 ## LICENSE
 
