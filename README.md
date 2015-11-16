@@ -23,15 +23,14 @@ minify | 压缩文件
 test  | 代码测试 （未实现）
 
 ## 安装 fedis
-1. 获取 fedis 软件包
+1、获取 fedis 软件包，进入 fedis 目录执行安装命令
 ```
 git clone https://github.com/Leonkao/fedis.git
-```
-2. 进入 fedis 目录执行安装命令
-```
+cd fedis
 npm install
 ```
-或者通过 npm 直接安装
+
+2、通过 npm 直接安装
 ```
 npm install fedis
 ```
