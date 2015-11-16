@@ -54,7 +54,7 @@ npm install fedis
 2. 安装 browser-sync 失败
    原因：客户端不具备编译环境，visualstudio
 
-解决方案
+### 解决方案
 
 1. 下载 [node_modules.7z](http://files.cnblogs.com/files/kelsen/node_modules.7z)
 2. 解压 node_modules.7z 到 fedis/node_modules 目录下（fedis/node_modules 下含4个文件夹）
