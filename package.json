@@ -14,6 +14,10 @@
     "url": "https://github.com/Leonkao/fedis/issues"
   },
   "homepage": "https://github.com/Leonkao/fedis#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Leonkao/fedis"
+  },
   "dependencies": {
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
