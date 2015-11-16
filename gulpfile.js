@@ -51,32 +51,11 @@ gulp.task('js', function(){
 });
 
 // publish
-gulp.task('dist-sass', function(){
-	return gulp.src("app/src/scss/main.scss")
-		//.pipe(plumber())
-		.pipe(sass.sync().on('error', sass.logError))
-		.pipe(sass({outputStyle:"compact"}))
-		.pipe(gulp.dest("app/docs/dist/style"))
-		.pipe(minifyCss())
-		.pipe(rename('main.min.css'))
-		.pipe(gulp.dest("app/docs/dist/style"));
-});
-
-
-gulp.task('dist-font', function(){
-	return gulp.src('app/docs/fonts/*.*')
+gulp.task('publish', function(){
+	return gulp.src('dist/**/*')
 		.pipe(plumber())
-		.pipe(gulp.dest('app/docs/dist/fonts/'))
+		.pipe(zip('publish.zip'))
+		.pipe(gulp.dest('release'))
 });
-
-
-gulp.task('dist-js', function(){
-	return gulp.src('app/src/js/kernel/*.js')
-		.pipe(plumber())
-		.pipe(gulp.dest("app/docs/dist/script"))
-});
-
-
-gulp.task('publish', ['dist-sass', 'dist-js', 'dist-font'], function(){});
 
 gulp.task('default', ['serve']);
