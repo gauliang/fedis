@@ -3,8 +3,6 @@
 Front-End development integration solution
 前端开发集成解决方案
 
-version:1.0.0
-
 ## 概述
 
 fedis 是一个基于 gulp/gulp-plugins 的前端开发集成解决方案。fedis 定义了一系列任务，这些自动执行的任务可以把你从繁杂无聊的复制、粘贴、压缩、重命名等事务中解脱出来，从而更专注于具体业务的开发实现。
