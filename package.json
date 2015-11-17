@@ -1,7 +1,7 @@
 {
   "name": "fedis",
-  "version": "1.0.0",
-  "description": "fedis - Front-End development integration solution 前端开发集成解决方案",
+  "version": "1.0.2",
+  "description": "fedis - Front-End development integration solution",
   "main": "index.js",
   "keywords": [
     "gulp",
