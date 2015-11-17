@@ -1,6 +1,6 @@
 {
   "name": "fedis",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "fedis - Front-End development integration solution",
   "main": "index.js",
   "keywords": [
@@ -19,6 +19,8 @@
     "url": "https://github.com/Leonkao/fedis"
   },
   "dependencies": {
+    "browser-sync": "2.10.0",
+    "browsersync-ssi": "0.2.4",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
     "gulp-minify": "0.0.5",
