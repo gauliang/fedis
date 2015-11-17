@@ -6,7 +6,9 @@
   "keywords": [
     "gulp",
     "sass",
-    "browser-sync"
+    "browser-sync",
+    "style",
+    "html"
   ],
   "author": "kelsen",
   "license": "MIT",
