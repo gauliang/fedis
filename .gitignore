@@ -219,6 +219,6 @@ pip-log.txt
 .cpp
 .zip
 node_modules/
-
+archive/
 dist/
 release/
