@@ -11,46 +11,53 @@ fedis 是一个基于 gulp/gulp-plugins 的前端开发集成解决方案。fedi
 
 集成了常用任务，后期会增加更多功能：
 
-功能 | 描述
+功能  |  描述
 ---- | ---- 
-server | 本地 http 服务
+server 		| 本地 http 服务
 browsersync | 多浏览器多屏幕同步测试
-sass | 文件编译
-concat | 文件合并 
-minify | 压缩文件
-test  | 代码测试 （未实现）
+sass 		| 文件编译
+concat 		| 文件合并 
+minify 		| 压缩文件
+test  		| 代码测试 （未实现）
 
 ## 安装 fedis
-1、获取 fedis 包
-
+1. 获取 fedis 包
 ```
 $ git clone https://github.com/Leonkao/fedis.git
 ```
 
-2、进入fedis目录
+1. 进入fedis目录
 ```
 $ cd fedis
 ```
 
-3、安装 fedis
+1. 安装 fedis
 ```
 $ npm install
 ```
 
-4、启动
+1. 启动
 ```
 $ gulp
 ```
 
-亦可通过 npm 安装(审核中，暂不可用)
+亦可通过 npm 安装
 ```
 npm install fedis
 ```
-由于网络问题安装过程会持续一段时间，请耐心等候。
+安装过程可能会持续一段时间，请耐心等候。
 
 ## 如何使用
-1、进入项目目录 fedis/ 执行 gulp 命令。此时浏览器会自动打开，并且多终端多屏幕实时响应你的代码变化。 
-2、进入工作目录 fedis/app/ 进行开始工作。
+1. 进入项目目录 fedis/ 执行 gulp 命令。此时浏览器会自动打开，并且多终端多屏幕实时响应你的代码变化。 
+1. 进入工作目录 fedis/app/ 进行开始工作。
+
+#### 新建/切换项目
+
+1. `$gulp --show` 用以显示全部已存档和当前工作项目。
+1. `$gulp --switch project-name` 切换至新项目，如果新项目不存在则会新建一个同名项目
+
+#### 修改默认项目模板
+每次切换到一个新的不存在的项目时都会创建一个新的项目，新项目内容在 archive/_init 目录中，修改这些文件即可
 
 ## 常见问题
 由于网络原因安装过程中极有可能出现下列问题，在后面给出了解决方案。
@@ -58,14 +65,14 @@ npm install fedis
 1. 安装 node-sass/gulp-sass 失败
    原因：是无法连接亚马逊云服务器下载二进制文件
    
-2. 安装 browser-sync 失败
+1. 安装 browser-sync 失败
    原因：客户端不具备编译环境，visualstudio
 
 #### 解决方案
 
 1. 下载 [node_modules.7z](http://files.cnblogs.com/files/kelsen/node_modules.7z)
-2. 解压 node_modules.7z 到 fedis/node_modules 目录下（fedis/node_modules 下含4个文件夹）
-3. 重新尝试 npm install
+1. 解压 node_modules.7z 到 fedis/node_modules 目录下（fedis/node_modules 下含4个文件夹）
+1. 重新尝试 npm install
 
 我们已将这相关软件包安装包并打包在 node_modules.7z 中，解压后你可以在 fedis/node_modules 中找到它们。随着这些软件包的更新 fedis 也会跟着更新，所以你安装的最新版本的 fedis 中的下列软件包可能不是最新的，如果需要最使用它们的新特性你需要自行升级相关软件包。
 * node-sass    3.4.2

@@ -3,16 +3,26 @@
 var gulp        = require('gulp'),
 	browserSync = require('browser-sync').create(),
 	SSI 		= require('browsersync-ssi'),
-	concat      = require('gulp-concat'),
-	minifyCss   = require('gulp-minify-css'),
+	minifyCss   = require('gulp-clean-css'),
 	minify   	= require('gulp-minify'),
 	plumber     = require('gulp-plumber'),
 	rename      = require('gulp-rename'),
 	sass        = require('gulp-sass'),
-	zip			= require('gulp-zip');
+	Tmaker      = require('gulp-tmaker'),
+	rm      	= require('gulp-rm'),
+	yargs      	= require('yargs'),
+	wjson		= require('write-json'),
+	verAppend 	= require('gulp-version-number'),
+	fs			= require('fs'),
+	useref		= require('gulp-useref'),
+	gulpif 		= require('gulp-if'),
+	projectInfo	= require('./projectInfo.json');
+	
+var switchProjectName = '_init',
+	archiveName = '_init';
 
 // Static Server + watching scss/html files
-gulp.task('serve', function() {
+gulp.task('serve', ['Tmaker', 'sass', 'js'], function() {
 
 	browserSync.init({
 		server: {
@@ -27,12 +37,20 @@ gulp.task('serve', function() {
 
 	gulp.watch("app/scss/**/*.scss", ['sass']);
 	gulp.watch("app/scripts/**/*.js", ['js']);
-	gulp.watch("dist/**/*.html").on("change",browserSync.reload);
+	gulp.watch("app/**/*.html", ['Tmaker']);
+	console.log('当前项目 :' + projectInfo.projectName);
+});
+
+gulp.task('Tmaker',function () {
+	return gulp.src("app/**/*.html")
+		.pipe(plumber())
+		.pipe(Tmaker({isPreview:true}))
+		.pipe(gulp.dest('dist/'))
+		.pipe(browserSync.stream());
 });
 
 // Compile sass into CSS & auto-inject into browsers
 gulp.task('sass', function() {
-	
 	return gulp.src("app/scss/**/*.scss")
 		.pipe(plumber())
 		.pipe(sass.sync().on('error', sass.logError))
@@ -45,17 +63,109 @@ gulp.task('sass', function() {
 gulp.task('js', function(){
 	return gulp.src('app/scripts/**/*.js')
 		.pipe(plumber())
-		.pipe(minify())
 		.pipe(gulp.dest("dist/scripts"))
 		.pipe(browserSync.stream());
 });
 
+function semverUpdate(key){
+	var versionJson = require('./app/version.json'),
+		semver = {		
+			major:0,
+			minor:1,
+			patch:2
+		}
+	var semverArr = versionJson.version.split('.');	
+	semverArr[semver[key]] = (parseInt(semverArr[semver[key]]) + 1).toString();
+	
+	semverArr[1] = semver[key] < 1 ? 0 : semverArr[1];
+	semverArr[2] = semver[key] < 2 ? 0 : semverArr[2];
+	
+	versionJson.version = semverArr.join('.');
+	wjson.sync('./app/version.json',versionJson);
+	return versionJson.version;
+}
 // publish
-gulp.task('publish', function(){
-	return gulp.src('dist/**/*')
+gulp.task('publish',  function(){
+	var key = (yargs.argv.major && 'major') || (yargs.argv.minor && 'minor') || (yargs.argv.patch && 'patch') || 'patch';
+	var version = semverUpdate(key);
+	gulp.src('app/**/*.html')
 		.pipe(plumber())
-		.pipe(zip('publish.zip'))
-		.pipe(gulp.dest('release'))
+		.pipe(Tmaker({isPreview:false}))
+		.pipe(useref({ searchPath: './dist' }))
+		.pipe(gulpif('*.js', minify()))
+        .pipe(gulpif('*.css', minifyCss()))
+		.pipe(verAppend({'append':{key:'v',to:[['css','%MD5%'],['js','%MD5%']]}}))
+		.pipe(gulp.dest('release/'+projectInfo.projectName + '-' + version))
+		.on('end',function(){console.log('已发布项目 ' + projectInfo.projectName + '-' + version)});
 });
 
-gulp.task('default', ['serve']);
+// switch project
+
+gulp.task('switch', function(cb){
+	// 显示当前项目列表
+	if(yargs.argv.show)
+	{
+		console.log('\n 当前项目 :\n');
+		console.log(' * ' + projectInfo.projectName + '\n\n 已存档项目 :\n');
+		fs.readdirSync('archive/').forEach(function(item) {
+			
+			if(item == '_init') {return;}			
+			console.log('   ' + item);
+		})
+		return console.log('\n 已列出所有项目\n');
+	}
+	
+	switchProjectName = yargs.argv.switch;
+	if(switchProjectName){
+		
+		if(switchProjectName == projectInfo.projectName){			
+			return ;
+		}		
+		// 存档
+		if(projectInfo.projectName != '_init'){
+			
+			console.log('存档 '+ projectInfo.projectName+ ' 项目');
+			
+			if(fs.existsSync('archive/'+ projectInfo.projectName))
+			{
+				gulp.src('archive/' + projectInfo.projectName).pipe(rm({async:false}));
+			}
+			
+			gulp.src('app/**/*')
+				.pipe(plumber())
+				.pipe(gulp.dest('archive/'+ projectInfo.projectName))
+				.on('end',function(){
+					// 清理 app & dist
+					console.log('清理 app & dist 目录');
+					gulp.src('app/**/*').pipe(rm({async:false}));
+					gulp.src('dist/**/*').pipe(rm({async:false}))
+					
+					// 切换项目
+					if(fs.existsSync('archive/'+ switchProjectName))
+					{
+						console.log('读取 '+switchProjectName+' 项目数据');
+						archiveName = switchProjectName;
+					}
+					else
+					{
+						console.log('新建 '+switchProjectName+' 项目');
+					}
+
+					gulp.src('archive/'+ archiveName +'/**/*')
+						.pipe(gulp.dest('app'))
+						.on('end',function () {
+							projectInfo.projectName = switchProjectName;
+							wjson.sync('projectInfo.json',projectInfo);
+							console.log('已切换到项目 ' + switchProjectName);
+							gulp.start(['Tmaker','sass','js']);
+							console.log('已完成项目初始化 ')
+						});
+				});
+		}
+		return;
+	}
+	
+	gulp.start('serve');
+});
+
+gulp.task('default',['switch']);

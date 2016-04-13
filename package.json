@@ -24,12 +24,19 @@
     "browser-sync": "2.10.0",
     "browsersync-ssi": "0.2.4",
     "gulp": "^3.9.0",
-    "gulp-concat": "^2.6.0",
+    "gulp-clean-css": "^2.0.6",
+    "gulp-if": "^2.0.0",
     "gulp-minify": "0.0.5",
     "gulp-minify-css": "^1.2.1",
     "gulp-plumber": "^1.0.1",
     "gulp-rename": "^1.2.2",
+    "gulp-rm": "^1.0.0",
     "gulp-sass": "2.1.0",
-    "gulp-zip": "^3.0.2"
+    "gulp-tmaker": "^1.0.2",
+    "gulp-useref": "^3.0.8",
+    "gulp-version-append": "^0.2.0",
+    "gulp-version-number": "^0.1.4",
+    "write-json": "^0.2.2",
+    "yargs": "^4.6.0"
   }
 }
