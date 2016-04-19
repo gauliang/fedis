@@ -115,36 +115,13 @@ gulp.task('publish',  function(){
 // switch project
 
 gulp.task('switch', function(cb){
-	if(projectInfo.projectName == 'null'){
-		console.log('\n 请先执行 "gulp --switch projectName" 新建一个项目');
+	
+	// 切换/新建 项目
+	if(yargs.argv.switch == 'null'){
+		console.log('\n 项目名不能为 null');
 		return ;
 	}
-	// 显示当前项目列表
-	if(yargs.argv.show)
-	{
-		console.log('\n 当前项目 :\n');
-		console.log(' * ' + projectInfo.projectName + '\n\n 已存档项目 :\n');
-		fs.readdirSync('archive/').forEach(function(item) {
-			
-			if(item == '_init') {return;}			
-			console.log('   ' + item);
-		})
-		return console.log('\n 已列出所有项目\n');
-	}
 	
-	if(yargs.argv.archive){		
-		console.log('\n 开始存档 ' + projectInfo.projectName + ' 项目');
-		gulp.src('archive/' + projectInfo.projectName + '/**/*')
-			.pipe(rm({async:false}));
-		
-		gulp.src('app/**/*')
-			.pipe(plumber())
-			.pipe(gulp.dest('archive/'+ projectInfo.projectName));
-			
-		return console.log('\n 已列存档当前项目\n');
-	}
-	
-	 
 	if(yargs.argv.switch){
 		switchProjectName = yargs.argv.switch;
 		if(switchProjectName == projectInfo.projectName){			
@@ -193,6 +170,36 @@ gulp.task('switch', function(cb){
 		}
 		return;
 	}
+	
+	if(projectInfo.projectName == 'null'){
+		console.log('\n 请先执行 "gulp --switch projectName" 新建一个项目');
+		return ;
+	}
+	
+	// 显示当前项目列表
+	if(yargs.argv.show)
+	{
+		console.log('\n 当前项目 :\n');
+		console.log(' * ' + projectInfo.projectName + '\n\n 已存档项目 :\n');
+		fs.readdirSync('archive/').forEach(function(item) {
+			
+			if(item == '_init') {return;}			
+			console.log('   ' + item);
+		})
+		return console.log('\n 已列出所有项目\n');
+	}
+	
+	if(yargs.argv.archive){		
+		console.log('\n 开始存档 ' + projectInfo.projectName + ' 项目');
+		gulp.src('archive/' + projectInfo.projectName + '/**/*')
+			.pipe(rm({async:false}));
+		
+		gulp.src('app/**/*')
+			.pipe(plumber())
+			.pipe(gulp.dest('archive/'+ projectInfo.projectName));
+			
+		return console.log('\n 已列存档当前项目\n');
+	}	
 	
 	gulp.start('serve');
 });
