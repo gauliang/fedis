@@ -44,7 +44,7 @@ gulp.task('serve', ['Tmaker', 'sass', 'js'], function() {
 	});
 
 	gulp.watch("app/scss/**/*.scss", ['sass']);
-	gulp.watch("app/scss/**/*.(jpg|png)", ['asset']);
+	gulp.watch("app/scss/*.+(jpg|png)", ['asset']);
 	gulp.watch("app/scripts/**/*.js", ['js']);
 	gulp.watch("app/**/*.html", ['Tmaker']);
 	console.log('当前项目 :' + projectInfo.projectName);
