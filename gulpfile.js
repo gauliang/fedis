@@ -95,6 +95,10 @@ function semverUpdate(key){
 }
 // publish
 gulp.task('publish',  function(){
+	if(projectInfo.projectName == 'null'){
+		console.log('\n 请先执行 "gulp --switch projectName" 新建一个项目\n');
+		return null;
+	}
 	var key = (yargs.argv.major && 'major') || (yargs.argv.minor && 'minor') || (yargs.argv.patch && 'patch') || 'patch';
 	var version = semverUpdate(key);
 	gulp.src('app/**/*.html')
@@ -111,6 +115,10 @@ gulp.task('publish',  function(){
 // switch project
 
 gulp.task('switch', function(cb){
+	if(projectInfo.projectName == 'null'){
+		console.log('\n 请先执行 "gulp --switch projectName" 新建一个项目');
+		return ;
+	}
 	// 显示当前项目列表
 	if(yargs.argv.show)
 	{
