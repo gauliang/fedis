@@ -68,13 +68,22 @@ gulp.task('js', function(){
 });
 
 function semverUpdate(key){
-	var versionJson = require('./app/version.json'),
+	
+	var versionJson,
 		semver = {		
 			major:0,
 			minor:1,
 			patch:2
-		}
-	var semverArr = versionJson.version.split('.');	
+		},
+		semverArr;
+		
+	if(fs.existsSync('./app/version.json')){
+		versionJson  = require('./app/version.json');		
+	} else {
+		versionJson = { "version":	"1.0.0"}
+	}
+		
+	semverArr = versionJson.version.split('.');	
 	semverArr[semver[key]] = (parseInt(semverArr[semver[key]]) + 1).toString();
 	
 	semverArr[1] = semver[key] < 1 ? 0 : semverArr[1];
@@ -115,9 +124,21 @@ gulp.task('switch', function(cb){
 		return console.log('\n 已列出所有项目\n');
 	}
 	
-	switchProjectName = yargs.argv.switch;
-	if(switchProjectName){
+	if(yargs.argv.archive){		
+		console.log('\n 开始存档 ' + projectInfo.projectName + ' 项目');
+		gulp.src('archive/' + projectInfo.projectName + '/**/*')
+			.pipe(rm({async:false}));
 		
+		gulp.src('app/**/*')
+			.pipe(plumber())
+			.pipe(gulp.dest('archive/'+ projectInfo.projectName));
+			
+		return console.log('\n 已列存档当前项目\n');
+	}
+	
+	 
+	if(yargs.argv.switch){
+		switchProjectName = yargs.argv.switch;
 		if(switchProjectName == projectInfo.projectName){			
 			return ;
 		}		
@@ -147,7 +168,7 @@ gulp.task('switch', function(cb){
 						archiveName = switchProjectName;
 					}
 					else
-					{
+					{						
 						console.log('新建 '+switchProjectName+' 项目');
 					}
 
