@@ -19,7 +19,15 @@ var gulp        = require('gulp'),
 	projectInfo	= require('./projectInfo.json');
 	
 var switchProjectName = '_init',
-	archiveName = '_init';
+	archiveName = '_init',
+	publishStyle = {
+		enp :{
+			asset : './dist/'
+		},
+		default:{
+			
+		}
+	};
 
 // Static Server + watching scss/html files
 gulp.task('serve', ['Tmaker', 'sass', 'js'], function() {
@@ -36,6 +44,7 @@ gulp.task('serve', ['Tmaker', 'sass', 'js'], function() {
 	});
 
 	gulp.watch("app/scss/**/*.scss", ['sass']);
+	gulp.watch("app/scss/**/*.(jpg|png)", ['asset']);
 	gulp.watch("app/scripts/**/*.js", ['js']);
 	gulp.watch("app/**/*.html", ['Tmaker']);
 	console.log('当前项目 :' + projectInfo.projectName);
@@ -67,6 +76,11 @@ gulp.task('js', function(){
 		.pipe(browserSync.stream());
 });
 
+gulp.task('asset', function () {
+	return gulp.src('./app/scss/*.+(jpg|png)')
+		.pipe(gulp.dest('dist/styles'));
+});
+
 function semverUpdate(key){
 	
 	var versionJson,
@@ -93,8 +107,15 @@ function semverUpdate(key){
 	wjson.sync('./app/version.json',versionJson);
 	return versionJson.version;
 }
+
+
 // publish
-gulp.task('publish',  function(){
+gulp.task('asset-publish',function () {
+	return gulp.src('./app/**/*.+(jpg|png)')
+		.pipe(gulp.dest('dist/'));
+});
+
+gulp.task('publish', ['asset-publish'], function(){
 	if(projectInfo.projectName == 'null'){
 		console.log('\n 请先执行 "gulp --switch projectName" 新建一个项目\n');
 		return null;
