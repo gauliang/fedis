@@ -1,6 +1,6 @@
 {
   "name": "fedis",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "fedis - Front-End development integration solution",
   "main": "index.js",
   "keywords": [
