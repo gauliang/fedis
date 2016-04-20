@@ -48,12 +48,15 @@ npm install fedis
 安装过程可能会持续一段时间，请耐心等候。
 
 ## 如何使用
-* 进入项目目录 fedis/ 执行 gulp 命令。此时浏览器会自动打开，并且多终端多屏幕实时响应你的代码变化。 
-* 进入工作目录 fedis/app/ 进行开始工作。
+* 进入 fedis/ 目录
+* 新建项目 `gulp --switch project-name`
+* 执行 gulp 命令，启动 fedis
+* 进入 fedis/app/ 开始工作
 
-#### 新建/切换项目
-* `$gulp --show` 用以显示全部已存档和当前工作项目。
-* `$gulp --switch project-name` 切换至新项目，如果新项目不存在则会新建一个同名项目
+#### 显示/存档/新建/切换 项目
+* `$gulp --show` 显示全部已存档和当前工作项目。
+* `$gulp --archive` 存档当前工作项目。
+* `$gulp --switch project-name` 切换至 `project-name` 项目，如果 `project-name` 项目不存在则会新建。
 
 #### 修改默认项目模板
 每次切换到一个新的不存在的项目时都会创建一个新的项目，新项目内容在 archive/_init 目录中，修改这些文件即可
