@@ -18,7 +18,7 @@ browsersync | 多浏览器多屏幕同步测试
 sass 		| 文件编译
 concat 		| 文件合并 
 minify 		| 压缩文件
-test  		| 代码测试 （未实现）
+test  		| 代码测试
 
 ## 安装 fedis
 * 获取 fedis 包
