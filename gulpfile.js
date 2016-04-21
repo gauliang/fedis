@@ -106,18 +106,17 @@ function semverUpdate(key){
 	return versionJson.version;
 }
 
-gulp.task('asset-publish',function () {
-	return gulp.src('./app/scss/*.+(jpg|png)')
-		.pipe(gulp.dest('dist/'));
-});
-
-gulp.task('publish', ['asset-publish'], function(){
+gulp.task('publish', function(){
 	if(projectInfo.projectName == 'null'){
 		console.log('\n 请先执行 "gulp --switch projectName" 新建一个项目\n');
 		return null;
 	}
 	var key = (yargs.argv.major && 'major') || (yargs.argv.minor && 'minor') || (yargs.argv.patch && 'patch') || 'patch';
 	var version = semverUpdate(key);
+	
+	gulp.src('./app/scss/*.+(jpg|png)')
+		.pipe(gulp.dest('release/'+projectInfo.projectName + '-' + version));
+		
 	gulp.src('app/**/*.html')
 		.pipe(plumber())
 		.pipe(Tmaker({isPreview:false}))
