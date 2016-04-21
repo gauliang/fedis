@@ -19,15 +19,7 @@ var gulp        = require('gulp'),
 	projectInfo	= require('./projectInfo.json');
 	
 var switchProjectName = '_init',
-	archiveName = '_init',
-	publishStyle = {
-		enp :{
-			asset : './dist/'
-		},
-		default:{
-			
-		}
-	};
+	archiveName = '_init';
 
 // Static Server + watching scss/html files
 gulp.task('serve', ['Tmaker', 'sass', 'js'], function() {
@@ -44,7 +36,8 @@ gulp.task('serve', ['Tmaker', 'sass', 'js'], function() {
 	});
 
 	gulp.watch("app/scss/**/*.scss", ['sass']);
-	gulp.watch("app/scss/*.+(jpg|png)", ['asset']);
+	gulp.watch("app/scss/*.+(jpg|png|gif)", ['asset']);
+	gulp.watch("app/data/*.*", ['preview-data']);
 	gulp.watch("app/scripts/**/*.js", ['js']);
 	gulp.watch("app/**/*.html", ['Tmaker']);
 	console.log('当前项目 :' + projectInfo.projectName);
@@ -76,11 +69,18 @@ gulp.task('js', function(){
 		.pipe(browserSync.stream());
 });
 
+
+gulp.task('preview-data', function () {
+	return gulp.src('./app/data/*.*')
+		.pipe(gulp.dest('dist/data'));
+});
+
 gulp.task('asset', function () {
-	return gulp.src('./app/scss/*.+(jpg|png)')
+	return gulp.src('./app/scss/*.+(jpg|png|gif)')
 		.pipe(gulp.dest('dist/styles'));
 });
 
+// publish
 function semverUpdate(key){
 	
 	var versionJson,
@@ -108,10 +108,8 @@ function semverUpdate(key){
 	return versionJson.version;
 }
 
-
-// publish
 gulp.task('asset-publish',function () {
-	return gulp.src('./app/**/*.+(jpg|png)')
+	return gulp.src('./app/scss/*.+(jpg|png)')
 		.pipe(gulp.dest('dist/'));
 });
 
@@ -134,7 +132,6 @@ gulp.task('publish', ['asset-publish'], function(){
 });
 
 // switch project
-
 gulp.task('switch', function(cb){
 	
 	// 切换/新建 项目
