@@ -53,11 +53,12 @@ npm install fedis
 * 执行 gulp 命令启动 fedis
 * 进入 fedis/app/ 开始工作
 
+> 提醒：如果要做模板中引用预览附件，这些文件可存放在 `./app/data/` 中，所有CSS中引用的图片直接存放在 `./app/scss/` 目录下即可。 
+
 #### 显示/存档/新建/切换 项目
 * `$gulp --show` 显示全部已存档和当前工作项目。
 * `$gulp --archive` 存档当前工作项目。
 * `$gulp --switch project-name` 切换至 `project-name` 项目，如果 `project-name` 项目不存在则会新建。
-
 
 #### 修改默认项目模板
 每次切换到一个新的不存在的项目时都会创建一个新的项目，新项目内容在 archive/_init 目录中，修改这些文件即可
