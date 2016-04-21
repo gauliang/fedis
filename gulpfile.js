@@ -6,7 +6,6 @@ var gulp        = require('gulp'),
 	minifyCss   = require('gulp-clean-css'),
 	minify   	= require('gulp-minify'),
 	plumber     = require('gulp-plumber'),
-	rename      = require('gulp-rename'),
 	sass        = require('gulp-sass'),
 	Tmaker      = require('gulp-tmaker'),
 	rm      	= require('gulp-rm'),
@@ -68,7 +67,6 @@ gulp.task('js', function(){
 		.pipe(gulp.dest("dist/scripts"))
 		.pipe(browserSync.stream());
 });
-
 
 gulp.task('preview-data', function () {
 	return gulp.src('./app/data/*.*')
@@ -181,7 +179,7 @@ gulp.task('switch', function(cb){
 							projectInfo.projectName = switchProjectName;
 							wjson.sync('projectInfo.json',projectInfo);
 							console.log('已切换到项目 ' + switchProjectName);
-							gulp.start(['Tmaker','sass','js']);
+							gulp.start(['Tmaker','sass','js','asset','preview-data']);
 							console.log('已完成项目初始化 ')
 						});
 				});
