@@ -13,12 +13,12 @@
   "author": "kelsen",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Leonkao/fedis/issues"
+    "url": "https://github.com/KelsenGao/fedis/issues"
   },
-  "homepage": "https://github.com/Leonkao/fedis#readme",
+  "homepage": "https://github.com/KelsenGao/fedis#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Leonkao/fedis"
+    "url": "https://github.com/KelsenGao/fedis"
   },
   "dependencies": {
     "browser-sync": "2.10.0",
