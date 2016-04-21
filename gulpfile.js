@@ -153,7 +153,7 @@ gulp.task('switch', function(cb){
 				gulp.src('archive/' + projectInfo.projectName).pipe(rm({async:false}));
 			}
 			
-			gulp.src('app/**/*')
+			gulp.src('app/**/*',{ dot: true })
 				.pipe(plumber())
 				.pipe(gulp.dest('archive/'+ projectInfo.projectName))
 				.on('end',function(){
@@ -173,7 +173,7 @@ gulp.task('switch', function(cb){
 						console.log('新建 '+switchProjectName+' 项目');
 					}
 
-					gulp.src('archive/'+ archiveName +'/**/*')
+					gulp.src('archive/'+ archiveName +'/**/*',{ dot: true })
 						.pipe(gulp.dest('app'))
 						.on('end',function () {
 							projectInfo.projectName = switchProjectName;
