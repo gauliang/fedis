@@ -5,7 +5,8 @@ Front-End development integration solution
 
 ## 概述
 
-fedis 是一个基于 gulp/gulp-plugins 的前端开发集成解决方案。fedis 定义了一系列任务，这些自动执行的任务可以把你从繁杂无聊的复制、粘贴、压缩、重命名等事务中解脱出来，从而更专注于具体业务的开发实现。
+fedis 是一个基于 gulp/gulp-plugins 的前端开发集成解决方案。
+让你从繁杂无聊的复制、粘贴、压缩、重命名等事务中解脱出来，从而更专注于具体业务的开发实现。
 
 ## 特性
 
@@ -13,39 +14,31 @@ fedis 是一个基于 gulp/gulp-plugins 的前端开发集成解决方案。fedi
 
 功能  |  描述
 ---- | ---- 
-server 		| 本地 http 服务
-browsersync | 多浏览器多屏幕同步测试
-sass 		| 文件编译
-concat 		| 文件合并 
-minify 		| 压缩文件
-test  		| 代码测试
+tmaker		| 模板中间语言解释引擎
+doc         | 文档生成
+switch      | 项目管理
+publish		| 发布项目 
+test  		| 测试
 
 ## 安装 fedis
-* 获取 fedis 包
-```
+
+安装过程可能会持续一段时间，请耐心等候。
+
+安装方式一：
+``` bash
 $ git clone https://github.com/Leonkao/fedis.git
-```
 
-* 进入fedis目录
-```
 $ cd fedis
-```
 
-* 安装 fedis
-```
 $ npm install
-```
 
-* 启动
-```
 $ gulp
 ```
 
-亦可通过 npm 安装
+安装方式二：
 ```
 npm install fedis
 ```
-安装过程可能会持续一段时间，请耐心等候。
 
 ## 如何使用
 * 进入 fedis/ 目录
@@ -53,12 +46,9 @@ npm install fedis
 * 执行 gulp 命令启动 fedis
 * 进入 fedis/app/ 开始工作
 
-**提醒**
-
->  模板文件 (html) 中引用的预览附件请存放在 `./app/data/` 中
-
->  CSS 中引用的附件请存放在 `./app/scss/` 目录下即可
-
+#### 提醒
+* 模板文件 (html) 中引用的预览附件请存放在 `./app/data/` 中
+* CSS 中引用的附件请存放在 `./app/scss/` 目录下即可
 
 #### 显示/存档/新建/切换 项目
 * `$gulp --show` 显示全部已存档和当前工作项目。
@@ -98,10 +88,10 @@ $gulp publish --<major|minor|patch>
 
 
 ## 鸣谢
-fedis 用到了很多开源软件包，没有这些开源项目就没有fedis，在此对相关开源团队表示由衷的感谢！
+fedis 用到了很多开源软件，没有这些开源项目就没有fedis，在此对相关开源团队表示由衷的感谢！
 
 ## LICENSE
 
 The MIT License (MIT)
 
-Copyright (c) 2016 Leon kao
+Copyright (c) 2016 Gaoliang
