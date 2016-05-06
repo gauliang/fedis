@@ -35,7 +35,7 @@ gulp.task('serve', ['Tmaker', 'sass', 'js'], function() {
 	});
 
 	gulp.watch("app/scss/**/*.scss", ['sass']);
-	gulp.watch("app/scss/*.+(jpg|png|gif)", ['asset']);
+	gulp.watch("app/scss/*.(jpg|png|gif)", ['asset']);
 	gulp.watch("app/data/*.*", ['preview-data']);
 	gulp.watch("app/scripts/**/*.js", ['js']);
 	gulp.watch("app/**/*.html", ['Tmaker']);
@@ -111,20 +111,33 @@ gulp.task('publish', function(){
 		console.log('\n 请先执行 "gulp --switch projectName" 新建一个项目\n');
 		return null;
 	}
-	var key = (yargs.argv.major && 'major') || (yargs.argv.minor && 'minor') || (yargs.argv.patch && 'patch') || 'patch';
+	var key = (yargs.argv.major && 'major') || (yargs.argv.minor && 'minor') || (yargs.argv.patch && 'patch') || (yargs.argv.nover && 'nover') || 'patch';
+	var gulpStream = null,
+		canAppendVer = true;
+	
+
+	if (key == 'nover'){
+		canAppendVer = false;
+		key = 'patch';
+	}
+	
 	var version = semverUpdate(key);
 	
 	gulp.src('./app/scss/*.+(jpg|png)')
 		.pipe(gulp.dest('release/'+projectInfo.projectName + '-' + version));
 		
-	gulp.src('app/**/*.html')
+	gulpStream = gulp.src('app/**/*.html')
 		.pipe(plumber())
 		.pipe(Tmaker({isPreview:false}))
 		.pipe(useref({ searchPath: './dist' }))
 		.pipe(gulpif('*.js', minify()))
-        .pipe(gulpif('*.css', minifyCss()))
-		.pipe(verAppend({'append':{key:'v',to:[['css','%MD5%'],['js','%MD5%']]}}))
-		.pipe(gulp.dest('release/'+projectInfo.projectName + '-' + version))
+        .pipe(gulpif('*.css', minifyCss()));
+		
+		if(canAppendVer){
+			gulpStream = gulpStream.pipe(verAppend({'append':{key:'v',to:[['css','%MD5%'],['js','%MD5%']]}}));
+		}
+		
+		gulpStream.pipe(gulp.dest('release/'+projectInfo.projectName + '-' + version))
 		.on('end',function(){console.log('已发布项目 ' + projectInfo.projectName + '-' + version)});
 });
 

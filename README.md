@@ -62,15 +62,15 @@ npm install fedis
 `publish` 任务用以发布当前工作项目到 release 目录。该过程会把项目转换为线上状态。
 还可以通过 `--param` 来更新版本号，语义请参考 [semver](https://docs.npmjs.com/misc/semver)
 ```
-$gulp publish --<major|minor|patch>
+$gulp publish --<major|minor|patch|nover>
 ```
- 
+
 ## 常见问题
 由于网络原因安装过程中极有可能出现下列问题，在后面给出了解决方案。
 
 * 安装 node-sass/gulp-sass 失败
    原因：是无法连接亚马逊云服务器下载二进制文件
-   
+
 * 安装 browser-sync 失败
    原因：客户端不具备编译环境，visualstudio
 
