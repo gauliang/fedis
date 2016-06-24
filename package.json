@@ -32,7 +32,7 @@
     "gulp-replace": "^0.5.4",
     "gulp-rm": "^1.0.0",
     "gulp-sass": "2.1.0",
-    "gulp-tmaker": "^1.0.2",
+    "gulp-tmaker": "^1.0.4",
     "gulp-useref": "^3.0.8",
     "gulp-util": "^3.0.7",
     "gulp-version-append": "^0.2.0",
