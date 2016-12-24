@@ -137,7 +137,6 @@ gulp.task('publish', function(){
 	}
 
 	var version = semverUpdate(key);
-	var ENPID = require('./app/'+projectInfo.projectName+'/enpid.json').enpid;
 
 	gulp.src(fedisPath.assetSrc)
 		.pipe(gulp.dest('release/'+projectInfo.projectName + '-' + version));
@@ -145,7 +144,6 @@ gulp.task('publish', function(){
 	gulpStream = gulp.src(fedisPath.htmlSrc)
 		.pipe(plumber())
 		.pipe(Tmaker({isPreview:false}))
-		//.pipe(replace("__ENPDIR__",ENPID+".files"))
 		.pipe(useref({ searchPath: fedisPath.htmlDist}))
 		.pipe(gulpif('*.js', minify()))
         .pipe(gulpif('*.css', minifyCss()));
@@ -156,7 +154,6 @@ gulp.task('publish', function(){
 		
 	gulpStream.pipe(gulp.dest('release/'+projectInfo.projectName + '-' + version))
 		.on('end',function(){
-			//wjson.sync('release/'+projectInfo.projectName + '-' + version+'/'+ ENPID + '.ini',versionJson);
 			console.log('已发布项目 ' + projectInfo.projectName + '-' + version)}
 		);
 });
@@ -195,14 +192,6 @@ gulp.task('switch', function(cb){
 					projectInfo.projectName = switchProjectName;
 					wjson.sync('projectInfo.json',projectInfo);
 					process.stdout.write(`新建项目完成\n`);
-
-					// console.log('请输入翔宇模板 ID:');
-					// process.stdin.resume();
-					// process.stdin.setEncoding('utf8');
-					// process.stdin.on('data', function (text) {
-					//	wjson.sync('app/'+switchProjectName+'/enpid.json',{enpid:text.trim()});
-					// 	//gulp.start(['Tmaker','sass','js','asset','preview-data']);
-					// });
 				});
 		}
 		return;
