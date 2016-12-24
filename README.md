@@ -19,6 +19,7 @@ doc         | 文档生成
 switch      | 项目管理
 publish		| 发布项目 
 test  		| 测试
+SSI         | Server Side Include
 
 ## 安装 fedis
 
@@ -26,7 +27,7 @@ test  		| 测试
 
 安装方式一：
 ``` bash
-$ git clone https://github.com/Leonkao/fedis.git
+$ git clone https://github.com/gauliang/fedis.git
 
 $ cd fedis
 

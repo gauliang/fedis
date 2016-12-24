@@ -17,7 +17,7 @@ var gulp        = require('gulp'),
 	gulpif 		= require('gulp-if'),
 	path		= require('path'),
 	projectInfo	= require('./projectInfo.json'),
-	replace		= require('gulp-replace');
+	gulpSSI		= require('gulp-html-ssi');
 	
 var switchProjectName = '_init';
 
@@ -34,8 +34,6 @@ var fedisPath = {
 	assetDist: './dist/'+projectInfo.projectName+'/styles/'
 }
 
-
-
 // Static Server + watching scss/html files
 gulp.task('serve', ['Tmaker', 'sass', 'js'], function() {
 
@@ -44,7 +42,7 @@ gulp.task('serve', ['Tmaker', 'sass', 'js'], function() {
 			baseDir:["./dist/"+projectInfo.projectName],
 			middleware:SSI({
 				baseDir:'./dist/'+projectInfo.projectName,
-				ext:'.shtml',
+				ext:'.html',
 				version:'2.10.0'
 			})
 		}
@@ -143,6 +141,7 @@ gulp.task('publish', function(){
 		
 	gulpStream = gulp.src(fedisPath.htmlSrc)
 		.pipe(plumber())
+		.pipe(gulpSSI())		
 		.pipe(Tmaker({isPreview:false}))
 		.pipe(useref({ searchPath: fedisPath.htmlDist}))
 		.pipe(gulpif('*.js', minify()))
