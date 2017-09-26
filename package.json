@@ -1,6 +1,6 @@
 {
   "name": "fedis",
-  "version": "1.2.4",
+  "version": "1.3.0",
   "description": "fedis - Front-End development integration solution",
   "main": "index.js",
   "keywords": [
@@ -13,12 +13,12 @@
   "author": "kelsen",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/KelsenGao/fedis/issues"
+    "url": "https://github.com/gauliang/fedis/issues"
   },
-  "homepage": "https://github.com/KelsenGao/fedis#readme",
+  "homepage": "https://github.com/gauliang/fedis#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/KelsenGao/fedis"
+    "url": "https://github.com/gauliang/fedis"
   },
   "dependencies": {
     "browser-sync": "2.10.0",
@@ -26,6 +26,7 @@
     "gulp": "^3.9.0",
     "gulp-clean-css": "^2.0.6",
     "gulp-html-ssi": "0.0.92",
+    "gulp-autoprefixer":"^3.0.0",
     "gulp-if": "^2.0.0",
     "gulp-minify": "0.0.5",
     "gulp-minify-css": "^1.2.1",
