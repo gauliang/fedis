@@ -1,3 +1,7 @@
 {
-  "projectName": "null"
+  "projectName": "platformpc",
+  "language":"cn",
+  "minifyCss": false,
+  "minifyJs": false,
+  "hashVersion": false
 }
