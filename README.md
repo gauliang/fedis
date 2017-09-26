@@ -63,29 +63,11 @@ npm install fedis
 `publish` 任务用以发布当前工作项目到 release 目录。该过程会把项目转换为线上状态。
 还可以通过 `--param` 来更新版本号，语义请参考 [semver](https://docs.npmjs.com/misc/semver)
 ```
-$gulp publish --<major|minor|patch|nover>
+$gulp publish --<major|minor|patch>
 ```
 
 ## 常见问题
-由于网络原因安装过程中极有可能出现下列问题，在后面给出了解决方案。
-
-* 安装 node-sass/gulp-sass 失败
-   原因：是无法连接亚马逊云服务器下载二进制文件
-
-* 安装 browser-sync 失败
-   原因：客户端不具备编译环境，visualstudio
-
-#### 解决方案
-
-1. 下载 [node_modules.7z](http://files.cnblogs.com/files/kelsen/node_modules.7z)
-2. 解压 node_modules.7z 到 fedis/node_modules 目录下（fedis/node_modules 下含4个文件夹）
-3. 重新尝试 npm install
-
-我们已将这相关软件包安装包并打包在 node_modules.7z 中，解压后你可以在 fedis/node_modules 中找到它们。随着这些软件包的更新 fedis 也会跟着更新，所以你安装的最新版本的 fedis 中的下列软件包可能不是最新的，如果需要最使用它们的新特性你需要自行升级相关软件包。
-* node-sass    3.4.2
-* libsass      3.3.2@C++
-* browser-sync 2.10.0
-* browsersync-ssi 0.2.4
+由于网络原因安装过程中极有可能出现下列问题，在后面给出了解决方案。可以使用 `cnpm` 命令进行安装。
 
 
 ## 鸣谢
@@ -95,4 +77,4 @@ fedis 用到了很多开源软件，没有这些开源项目就没有fedis，在
 
 The MIT License (MIT)
 
-Copyright (c) 2016 Gaoliang
+Copyright (c) 2017 Gaoliang
