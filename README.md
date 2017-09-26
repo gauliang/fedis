@@ -50,8 +50,9 @@ npm install fedis
 #### 配置
 
 Fedis 根目录中有一个名为 projectInfo 的文件，该文件存储了fedis的配置信息，说明如下：
+
 配置项  | 取值 | 说明
----- | ---- 
+--- | --- | --- | 
 language | `cn`或`en` | Tmaker 预览时使用何种语言, `cn` 为中文, `en` 为英文 |
 minifyCss | 布尔值 | 是否对输出的 CSS 进行压缩 |
 minifyJs | 布尔值 | 是否对输出的 JS 进行压缩 |
