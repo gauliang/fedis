@@ -47,6 +47,17 @@ npm install fedis
 * 执行 gulp 命令启动 fedis
 * 进入 fedis/app/ 开始工作
 
+#### 配置
+
+Fedis 根目录中有一个名为 projectInfo 的文件，该文件存储了fedis的配置信息，说明如下：
+配置项  | 取值 | 说明
+---- | ---- 
+language | `cn`或`en` | Tmaker 预览时使用何种语言, `cn` 为中文, `en` 为英文 |
+minifyCss | 布尔值 | 是否对输出的 CSS 进行压缩 |
+minifyJs | 布尔值 | 是否对输出的 JS 进行压缩 |
+hashVersion | 布尔值 | 是否在输出的附件引用末端添加 hash |
+
+
 #### 提醒
 * 模板文件 (html) 中引用的预览附件请存放在 `./app/data/` 中
 * CSS 中引用的附件请存放在 `./app/scss/` 目录下即可
@@ -65,6 +76,8 @@ npm install fedis
 ```
 $gulp publish --<major|minor|patch>
 ```
+
+
 
 ## 常见问题
 由于网络原因安装过程中极有可能出现下列问题，在后面给出了解决方案。可以使用 `cnpm` 命令进行安装。
