@@ -87,12 +87,6 @@ $gulp publish --<major|minor|patch>
 
 由于网络原因安装过程中极有可能出现下列问题，在后面给出了解决方案。可以使用 `cnpm` 命令进行安装。
 
-## 鸣谢
-
-fedis 用到了很多开源软件，没有这些开源项目就没有fedis，在此对相关开源团队表示由衷的感谢！
-
 ## LICENSE
 
 The MIT License (MIT)
-
-Copyright (c) 2017 Gaoliang

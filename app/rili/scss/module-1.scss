@@ -1,0 +1,20 @@
+html{ font-family: 'microsoft yahei'}
+.fedis-main
+{
+	background-image: linear-gradient(135deg, #573e81, #133259 40%, #133259);
+	color: #FFF;
+	padding: 80px;
+	border-radius: 5px;	
+	h1{font-size: 6em; font-family: Arial, Helvetica, sans-serif; text-align: center;font-weight: 100; }
+}
+
+.container{
+	margin: 0 30px;
+	a{
+		color: #fff; background: #7B0; border: 1px solid #66aa00; padding: 2px 10px; line-height: 2em; display: inline-block; text-decoration: none; border-radius: 3px;
+		&:hover{background: #88cc11; border: 1px solid #7B0;}
+	}
+}
+hr{ border-style: solid; border-color: #DDD; border-width: 1px 0 0 0;}
+.footer{color:#888}
+.text-center{text-align: center;}

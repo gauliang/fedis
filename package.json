@@ -21,9 +21,9 @@
     "url": "https://github.com/gauliang/fedis"
   },
   "dependencies": {
-    "browser-sync": "^2.10.0",
-    "browsersync-ssi": "0.2.4",
-    "gulp": "^3.9.0",
+    "browser-sync": "^2.23.6",
+    "browsersync-ssi": "^0.2.4",
+    "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.0.0",
     "gulp-clean-css": "^3.9.3",
     "gulp-html-ssi": "0.0.92",
@@ -31,7 +31,7 @@
     "gulp-minify": "0.0.5",
     "gulp-plumber": "^1.0.1",
     "gulp-rm": "^1.0.0",
-    "gulp-sass": "2.1.0",
+    "gulp-sass": "^4.0.1",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-tmaker": "^1.0.4",
     "gulp-useref": "^3.0.8",
