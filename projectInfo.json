@@ -1,7 +1,11 @@
 {
   "projectName": "null",
-  "language":"cn",
+  "language": "cn",
   "minifyCss": false,
-  "minifyJs": false,
-  "hashVersion": false
+  "minifyJs": true,
+  "hashVersion": false,
+  "proxyTarget": {
+    "api": "http://www.81.cn",
+    "enp": "http://10.x.x.x:port"
+  }
 }

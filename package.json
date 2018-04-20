@@ -1,6 +1,6 @@
 {
   "name": "fedis",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "fedis - Front-End development integration solution",
   "main": "index.js",
   "keywords": [
@@ -21,23 +21,24 @@
     "url": "https://github.com/gauliang/fedis"
   },
   "dependencies": {
-    "browser-sync": "2.10.0",
+    "browser-sync": "^2.10.0",
     "browsersync-ssi": "0.2.4",
     "gulp": "^3.9.0",
-    "gulp-clean-css": "^2.0.6",
-    "gulp-html-ssi": "0.0.92",
     "gulp-autoprefixer": "^3.0.0",
+    "gulp-clean-css": "^3.9.3",
+    "gulp-html-ssi": "0.0.92",
     "gulp-if": "^2.0.0",
     "gulp-minify": "0.0.5",
-    "gulp-minify-css": "^1.2.1",
     "gulp-plumber": "^1.0.1",
     "gulp-rm": "^1.0.0",
     "gulp-sass": "2.1.0",
+    "gulp-sourcemaps": "^2.6.4",
     "gulp-tmaker": "^1.0.4",
     "gulp-useref": "^3.0.8",
     "gulp-util": "^3.0.7",
     "gulp-version-append": "^0.2.0",
     "gulp-version-number": "^0.1.4",
+    "http-proxy-middleware": "^0.18.0",
     "write-json": "^0.2.2",
     "yargs": "^4.6.0"
   }
