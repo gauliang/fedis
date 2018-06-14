@@ -8,16 +8,13 @@ var gulp = require('gulp'),
     plumber = require('gulp-plumber'),
     sass = require('gulp-sass'),
     Tmaker = require('gulp-tmaker'),
-    rm = require('gulp-rm'),
     yargs = require('yargs'),
     wjson = require('write-json'),
     verAppend = require('gulp-version-number'),
     fs = require('fs'),
     useref = require('gulp-useref'),
     gulpif = require('gulp-if'),
-    path = require('path'),
     projectInfo = require('./projectInfo.json'),
-    sourcemaps = require('gulp-sourcemaps'),
     gulpSSI = require('gulp-html-ssi'),
     proxy = require('http-proxy-middleware'),
     autoprefixer = require('gulp-autoprefixer');
@@ -81,11 +78,7 @@ gulp.task('Tmaker', function () {
 // Compile sass into CSS & auto-inject into browsers
 gulp.task('sass', function () {
     return gulp.src(fedisPath.sassSrc)
-        // .pipe(compass({
-        // project: path.join(__dirname, 'app/'+projectInfo.projectName+'/scss'),
-        // css: 'app/'+projectInfo.projectName+'/scss',
-        // sass: 'app/'+projectInfo.projectName+'/scss',
-        // }))
+
         .pipe(plumber())
         .pipe(sass.sync().on('error', sass.logError))
         .pipe(sass({ outputStyle: "compact" }))
@@ -100,10 +93,6 @@ gulp.task('sass', function () {
 gulp.task('js', function () {
     return gulp.src(fedisPath.jsSrc)
         .pipe(plumber())
-
-        .pipe(sourcemaps.init())
-        .pipe(minify())
-        .pipe(sourcemaps.write('./'))
 
         .pipe(gulp.dest(fedisPath.jsDist))
         .pipe(browserSync.stream());
