@@ -1,8 +1,8 @@
 {
-  "projectName": "rili",
+  "projectName": "null",
   "language": "cn",
   "minifyCss": false,
-  "minifyJs": true,
+  "minifyJs": false,
   "hashVersion": false,
   "proxyTarget": {
     "api": "http://www.81.cn",
